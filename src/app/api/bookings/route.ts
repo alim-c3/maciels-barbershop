@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServiceClient } from "@/lib/supabase";
+import { supabase, getServiceClient } from "@/lib/supabase";
 import { SERVICES } from "@/lib/data";
 import type { BookingFormData } from "@/lib/types";
 
@@ -58,25 +58,7 @@ export async function POST(req: NextRequest) {
     const endHour12 = endHour > 12 ? endHour - 12 : endHour === 0 ? 12 : endHour;
     const endTime = `${endHour12}:${String(endMin).padStart(2, "0")} ${endPeriod}`;
 
-    const supabase = getServiceClient();
-
-    // Check for double-booking
-    const { data: conflicts } = await supabase
-      .from("appointments")
-      .select("id")
-      .eq("barber_id", body.barberId)
-      .eq("date", body.date)
-      .eq("start_time", body.startTime)
-      .in("status", ["pending", "confirmed"]);
-
-    if (conflicts && conflicts.length > 0) {
-      return NextResponse.json(
-        { error: "That time slot is no longer available. Please choose another." },
-        { status: 409 }
-      );
-    }
-
-    // Insert appointment
+    // Insert appointment — unique index prevents double-booking at DB level
     const { data, error } = await supabase
       .from("appointments")
       .insert({
@@ -96,6 +78,12 @@ export async function POST(req: NextRequest) {
       .single();
 
     if (error) {
+      if (error.code === "23505") {
+        return NextResponse.json(
+          { error: "That time slot is no longer available. Please choose another." },
+          { status: 409 }
+        );
+      }
       console.error("Supabase insert error:", error);
       return NextResponse.json({ error: "Failed to save booking." }, { status: 500 });
     }
