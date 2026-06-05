@@ -1,12 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Star, Clock, ChevronRight } from "lucide-react";
-import { BARBERS, SERVICES, REVIEWS, GALLERY_IMAGES, BLOG_POSTS, SHOP, HOURS } from "@/lib/data";
-import StarRating from "@/components/StarRating";
+import { MapPin, Phone, Star, Clock } from "lucide-react";
+import { PUBLIC_BARBERS, SERVICES, GALLERY_IMAGES, BLOG_POSTS, SHOP } from "@/lib/data";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 export default function HomePage() {
-  const featuredReviews = REVIEWS.slice(0, 3);
-  const featuredBarbers = BARBERS.slice(0, 3);
+  const featuredBarbers = PUBLIC_BARBERS.slice(0, 3);
   const featuredPosts = BLOG_POSTS.slice(0, 3);
   const galleryPreview = GALLERY_IMAGES.slice(0, 6);
 
@@ -29,11 +28,11 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 bg-barber-dark/80 border border-zinc-700 rounded-full px-4 py-1.5 mb-8">
             <div className="flex gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={14} className="text-gold fill-gold" />
+                <Star key={i} size={13} className="text-yellow-400 fill-yellow-400" />
               ))}
             </div>
             <span className="text-sm text-white font-semibold">{SHOP.rating}</span>
-            <span className="text-sm text-barber-gray">({SHOP.reviewCount} reviews on Booksy)</span>
+            <span className="text-sm text-barber-gray">({SHOP.reviewCount} Google reviews)</span>
           </div>
 
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl text-white tracking-wide mb-4 leading-tight">
@@ -56,7 +55,6 @@ export default function HomePage() {
             109 Union Ave, New Rochelle, NY 10801
           </p>
         </div>
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-zinc-500 rounded-full flex justify-center pt-2">
             <div className="w-1 h-2 bg-gold rounded-full" />
@@ -66,7 +64,7 @@ export default function HomePage() {
 
       {/* ANNOUNCEMENT STRIP */}
       <div className="bg-gold text-barber-black text-center py-3 text-sm font-bold tracking-wide">
-        Walk-ins welcome · Book online 24/7 · 6 expert barbers
+        Walk-ins welcome · Book online 24/7 · 5 expert barbers
       </div>
 
       {/* SERVICES */}
@@ -85,12 +83,8 @@ export default function HomePage() {
                 </p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-white font-bold text-xl">
-                      from ${service.startingPrice}
-                    </span>
-                    <span className="text-barber-gray text-xs ml-2">
-                      · {service.durationMinutes} min
-                    </span>
+                    <span className="text-white font-bold text-xl">from ${service.startingPrice}</span>
+                    <span className="text-barber-gray text-xs ml-2">· {service.durationMinutes} min</span>
                   </div>
                   <Link href="/book" className="text-gold text-sm hover:text-gold-light transition-colors font-semibold">
                     Book →
@@ -100,9 +94,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link href="/services" className="btn-outline">
-              See All Services
-            </Link>
+            <Link href="/services" className="btn-outline">See All Services</Link>
           </div>
         </div>
       </section>
@@ -127,10 +119,7 @@ export default function HomePage() {
                   <p className="text-barber-gray text-sm mb-3">{barber.role}</p>
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {barber.specialties.map((s) => (
-                      <span
-                        key={s}
-                        className="text-xs bg-barber-charcoal text-zinc-300 px-2 py-0.5 rounded"
-                      >
+                      <span key={s} className="text-xs bg-barber-charcoal text-zinc-300 px-2 py-0.5 rounded">
                         {s}
                       </span>
                     ))}
@@ -146,57 +135,13 @@ export default function HomePage() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link href="/barbers" className="btn-outline">
-              Meet All 6 Barbers
-            </Link>
+            <Link href="/barbers" className="btn-outline">Meet All Barbers</Link>
           </div>
         </div>
       </section>
 
-      {/* REVIEWS */}
+      {/* GALLERY */}
       <section className="py-20 bg-barber-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Aggregate */}
-          <div className="text-center mb-12">
-            <div className="flex justify-center gap-1 mb-3">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={28} className="text-gold fill-gold" />
-              ))}
-            </div>
-            <p className="text-5xl font-bold text-white mb-1">{SHOP.rating}</p>
-            <p className="text-barber-gray">{SHOP.reviewCount} reviews on Booksy</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredReviews.map((review) => (
-              <div key={review.id} className="card p-6 border-l-2 border-l-gold">
-                <StarRating rating={review.rating} />
-                <p className="text-zinc-300 text-sm mt-4 mb-5 leading-relaxed italic">
-                  &ldquo;{review.body}&rdquo;
-                </p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-white font-semibold text-sm">{review.reviewerName}</p>
-                    {review.source && (
-                      <p className="text-barber-gray text-xs">{review.source}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/reviews" className="btn-outline">
-              Read All Reviews
-            </Link>
-            <Link href="/book" className="btn-primary">
-              Book Your Cut
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* GALLERY STRIP */}
-      <section className="py-20 bg-barber-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-heading">The Work</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -212,30 +157,29 @@ export default function HomePage() {
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link href="/gallery" className="btn-outline">
-              View Full Gallery
-            </Link>
+            <Link href="/gallery" className="btn-outline">View Full Gallery</Link>
           </div>
         </div>
       </section>
 
+      {/* GOOGLE REVIEWS CAROUSEL */}
+      <ReviewsCarousel />
+
       {/* ABOUT STRIP */}
-      <section className="py-20 bg-barber-black">
+      <section className="py-20 bg-barber-dark">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="section-heading">New Rochelle&apos;s Barbershop</h2>
           <p className="text-zinc-300 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
             Maciel&apos;s has been serving the New Rochelle community with precision,
-            pride, and craft. Six skilled barbers. Three core services. One standard —
+            pride, and craft. Five skilled barbers. Six quality services. One standard —
             leave looking and feeling your best, every time.
           </p>
-          <Link href="/about" className="btn-outline">
-            Our Story
-          </Link>
+          <Link href="/about" className="btn-outline">Our Story</Link>
         </div>
       </section>
 
       {/* BLOG */}
-      <section className="py-20 bg-barber-dark">
+      <section className="py-20 bg-barber-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-heading">From the Chair</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -260,9 +204,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link href="/blog" className="btn-outline">
-              All Articles
-            </Link>
+            <Link href="/blog" className="btn-outline">All Articles</Link>
           </div>
         </div>
       </section>
@@ -286,10 +228,7 @@ export default function HomePage() {
           <div className="flex flex-col items-center gap-3">
             <Phone className="text-gold" size={28} />
             <p className="text-white font-semibold">Call Us</p>
-            <a
-              href={`tel:${SHOP.phone}`}
-              className="text-barber-gray text-sm hover:text-gold transition-colors"
-            >
+            <a href={`tel:${SHOP.phone}`} className="text-barber-gray text-sm hover:text-gold transition-colors">
               {SHOP.phone}
             </a>
           </div>

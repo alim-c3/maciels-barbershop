@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Instagram } from "lucide-react";
-import { BARBERS } from "@/lib/data";
+import { PUBLIC_BARBERS as BARBERS } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Our Barbers",

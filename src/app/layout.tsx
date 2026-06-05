@@ -43,7 +43,7 @@ export default function RootLayout({
       <body>
         <StructuredData />
         <Header />
-        <main>{children}</main>
+        <main className="pt-[3.5rem]">{children}</main>
         <Footer />
         <StickyBookingCTA />
       </body>

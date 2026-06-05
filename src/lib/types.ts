@@ -9,6 +9,7 @@ export interface Barber {
   active: boolean;
   sortOrder: number;
   instagramUrl?: string;
+  hidden?: boolean;
 }
 
 export interface Service {
