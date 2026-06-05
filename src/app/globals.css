@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e0c06a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-barber-black text-white;
+  }
+
+  ::selection {
+    background-color: #c9a84c33;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block bg-gold text-barber-black font-bold px-8 py-3 rounded transition-colors hover:bg-gold-light focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-barber-black;
+  }
+
+  .btn-outline {
+    @apply inline-block border border-gold text-gold font-bold px-8 py-3 rounded transition-colors hover:bg-gold hover:text-barber-black focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-barber-black;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-display text-gold tracking-wide mb-10 text-center;
+  }
+
+  .input-field {
+    @apply w-full bg-barber-charcoal border border-zinc-700 text-white placeholder-barber-gray rounded px-4 py-3 focus:outline-none focus:border-gold transition-colors;
+  }
+
+  .card {
+    @apply bg-barber-dark border border-zinc-800 rounded-lg overflow-hidden;
+  }
+}

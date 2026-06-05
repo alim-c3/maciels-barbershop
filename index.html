@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maciel's Barber Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">Maciel's Barber Shop</div>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#book" class="btn-book">Book Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Maciel's Barber Shop</h1>
+      <p>Premium cuts. Classic style. Every time.</p>
+      <a href="#book" class="btn-primary">Book an Appointment</a>
+    </div>
+  </section>
+
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Haircut</h3>
+        <p>Classic and modern cuts tailored to you.</p>
+        <span class="price">$25</span>
+      </div>
+      <div class="service-card">
+        <h3>Beard Trim</h3>
+        <p>Sharp lines and clean edges.</p>
+        <span class="price">$15</span>
+      </div>
+      <div class="service-card">
+        <h3>Cut + Beard</h3>
+        <p>Full grooming package.</p>
+        <span class="price">$35</span>
+      </div>
+      <div class="service-card">
+        <h3>Hot Towel Shave</h3>
+        <p>Traditional straight razor shave.</p>
+        <span class="price">$30</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>
+        Maciel's Barber Shop has been serving the community with pride. We combine
+        old-school craftsmanship with modern style to give every client a cut they
+        can be proud of. Walk-ins welcome.
+      </p>
+    </div>
+  </section>
+
+  <section id="book" class="booking">
+    <h2>Book an Appointment</h2>
+    <form id="booking-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="tel" placeholder="Phone Number" required />
+      <input type="date" required />
+      <select>
+        <option value="">Select a Service</option>
+        <option value="haircut">Haircut — $25</option>
+        <option value="beard">Beard Trim — $15</option>
+        <option value="combo">Cut + Beard — $35</option>
+        <option value="shave">Hot Towel Shave — $30</option>
+      </select>
+      <button type="submit">Request Appointment</button>
+    </form>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Find Us</h2>
+    <div class="contact-info">
+      <p>123 Main Street, Your City, ST 00000</p>
+      <p>Phone: (555) 000-0000</p>
+      <p>Hours: Mon–Sat 9am – 7pm</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Maciel's Barber Shop. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
