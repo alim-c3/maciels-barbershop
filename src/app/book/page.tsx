@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import BookingWizard from "@/components/BookingWizard";
 
 export const metadata: Metadata = {
@@ -19,7 +20,9 @@ export default function BookPage() {
         </p>
       </div>
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <BookingWizard />
+        <Suspense fallback={<div className="text-zinc-400 text-center py-12">Loading...</div>}>
+          <BookingWizard />
+        </Suspense>
       </div>
     </div>
   );
