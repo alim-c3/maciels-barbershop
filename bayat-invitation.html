@@ -10,15 +10,15 @@
     <style>
 /* ─── TOKENS ───────────────────────────────────────────── */
 :root {
-    --blue:       #6d92c6;
-    --blue-deep:  #3d6ea8;
-    --blue-light: #edf2f9;
-    --blue-pale:  #f4f8fd;
-    --blue-rule:  #c0d1e8;
-    --sage:       #b2bfa0;
-    --sage-deep:  #7a8f6b;
-    --sage-light: #f2f5ef;
-    --sage-rule:  #cad6bc;
+    --blue:       #4e78b5;
+    --blue-deep:  #2a5a94;
+    --blue-light: #ddeaf6;
+    --blue-pale:  #eaf2fb;
+    --blue-rule:  #9ab8d8;
+    --sage:       #7fa068;
+    --sage-deep:  #4f7040;
+    --sage-light: #e5eedc;
+    --sage-rule:  #a3be8e;
     --cream:      #faf8f4;
     --cream-warm: #f5f1ea;
     --text:       #1a1a1c;
@@ -64,8 +64,8 @@ body{
 /* ─── TAG ──────────────────────────────────────────────── */
 .tag{
     font-family:'Cinzel',serif;
-    font-size:10px;font-weight:400;
-    letter-spacing:.30em;text-transform:uppercase;
+    font-size:12px;font-weight:400;
+    letter-spacing:.24em;text-transform:uppercase;
     display:block
 }
 
@@ -211,10 +211,10 @@ body{
 .ceremony__inner{max-width:700px;margin:0 auto}
 .ceremony__lead{
     font-family:'Cormorant Garamond',serif;
-    font-size:clamp(17px,2.2vw,20px);
+    font-size:clamp(15px,1.8vw,17px);
     font-style:italic;font-weight:300;
     color:var(--text-sub);
-    margin-bottom:32px;
+    margin-bottom:24px;
 }
 .ceremony__tag{color:var(--blue-deep);margin-bottom:20px}
 .ceremony__date{
@@ -244,7 +244,7 @@ body{
 .venues__tag{color:var(--blue-deep);margin-bottom:14px}
 .venues__sub{
     font-family:'Cormorant Garamond',serif;
-    font-size:clamp(19px,2.8vw,25px);
+    font-size:clamp(16px,2vw,19px);
     font-style:italic;font-weight:300;
     color:var(--text-sub);
 }
@@ -297,7 +297,28 @@ body{
     color:var(--text-sub);
     margin-bottom:28px;
 }
-.vcard__link{
+
+.vcard__actions{display:flex;align-items:center;justify-content:center;gap:16px}
+.vcard__map{
+    font-family:'Cinzel',serif;
+    font-size:9.5px;letter-spacing:.20em;text-transform:uppercase;
+    color:var(--blue-deep);text-decoration:none;
+    border-bottom:1px solid var(--blue-rule);padding-bottom:2px;
+    transition:color .2s,border-color .2s;
+}
+.vcard__map:hover{color:var(--text);border-color:var(--text)}
+.vcard__dir{
+    display:inline-block;
+    font-family:'Cinzel',serif;
+    font-size:9.5px;letter-spacing:.20em;text-transform:uppercase;
+    color:#fff;background:var(--blue);
+    text-decoration:none;padding:10px 20px;
+    transition:background .2s;
+}
+.vcard__dir:hover{background:var(--blue-deep)}
+
+/* legacy — kept for safety */
+.vcard__link-unused{
     display:inline-block;
     font-family:'Cinzel',serif;
     font-size:9.5px;letter-spacing:.22em;
@@ -397,10 +418,20 @@ body{
 
 /* ─── RESPONSIVE ───────────────────────────────────────── */
 @media(max-width:620px){
-    .hero{padding:64px 24px 96px}
-    .bayat,.ceremony,.venues,.attire,.rsvp{padding-left:24px;padding-right:24px}
+    .hero{padding:44px 20px 72px}
+    .hero__title-bayat{letter-spacing:.08em}
+    .hero__meta{gap:8px 10px}
+    .bayat{padding:44px 20px 40px}
+    .ceremony{padding:48px 20px 44px}
+    .ceremony__lead{margin-bottom:16px}
+    .venues{padding:48px 20px 44px}
+    .venues__hd{margin-bottom:36px}
+    .attire{padding:44px 20px 40px}
+    .rsvp{padding:52px 20px}
+    .footer{padding:36px 20px}
     .venues__grid{grid-template-columns:1fr;gap:16px}
-    .vcard{padding:36px 28px 32px}
+    .vcard{padding:32px 24px 28px}
+    .vcard__actions{gap:12px}
 }
     </style>
 </head>
@@ -437,10 +468,10 @@ body{
 <!-- DATE & TIME -->
 <section class="ceremony">
     <div class="ceremony__inner">
-        <p class="ceremony__lead reveal">Please join us</p>
-        <span class="tag ceremony__tag reveal d1">Ceremony</span>
+        <span class="tag ceremony__tag reveal">Ceremony</span>
+        <p class="ceremony__lead reveal d1">Please join us</p>
         <p class="ceremony__date reveal d2">Saturday, July 4, 2026</p>
-        <p class="ceremony__time reveal d3">Five o&rsquo;clock in the evening</p>
+        <p class="ceremony__time reveal d3">5:00 PM</p>
         <div class="orn orn-md ceremony__orn reveal d4" style="color:var(--blue-rule)">
             <span class="gem"></span><span class="gem"></span><span class="gem"></span>
         </div>
@@ -458,13 +489,19 @@ body{
             <span class="vcard__seq">I &mdash; Ceremony</span>
             <h2 class="vcard__name">Unionville Jamatkhane</h2>
             <p class="vcard__city">Markham, Ontario</p>
-            <a class="vcard__link" href="https://www.google.com/maps/dir/?api=1&destination=Unionville+Jamatkhane+Markham+ON" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            <div class="vcard__actions">
+                <a class="vcard__map" href="https://maps.google.com/?q=Unionville+Jamatkhane+Markham+Ontario" target="_blank" rel="noopener noreferrer">View on Map</a>
+                <a class="vcard__dir" href="https://www.google.com/maps/dir/?api=1&destination=Unionville+Jamatkhane+Markham+ON" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </div>
         </div>
         <div class="vcard reveal d2">
             <span class="vcard__seq">II &mdash; Dinner</span>
             <h2 class="vcard__name">Simply Delicious Banquet Hall</h2>
             <p class="vcard__city">Markham, Ontario</p>
-            <a class="vcard__link" href="https://www.google.com/maps/dir/?api=1&destination=Simply+Delicious+Banquet+Hall+Markham+ON" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            <div class="vcard__actions">
+                <a class="vcard__map" href="https://maps.google.com/?q=Simply+Delicious+Banquet+Hall+Markham+Ontario" target="_blank" rel="noopener noreferrer">View on Map</a>
+                <a class="vcard__dir" href="https://www.google.com/maps/dir/?api=1&destination=Simply+Delicious+Banquet+Hall+Markham+ON" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </div>
         </div>
     </div>
 </section>
