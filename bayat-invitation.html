@@ -77,6 +77,19 @@ body{
 }
 .star-gem::after{transform:rotate(45deg)}
 
+
+/* geometric motif on alternate cream sections */
+.ceremony::before,.rsvp::before{
+    content:'';
+    position:absolute;inset:0;
+    background:
+        linear-gradient(45deg, transparent 48%, rgba(94,148,82,.06) 50%, transparent 52%) 0 0 / 28px 28px,
+        linear-gradient(-45deg, transparent 48%, rgba(94,148,82,.06) 50%, transparent 52%) 0 0 / 28px 28px;
+    pointer-events:none;
+}
+.ceremony,.rsvp{position:relative;overflow:hidden}
+.ceremony>*,.rsvp>*{position:relative}
+
 /* ─── TAG ──────────────────────────────────────────────── */
 .tag{
     font-family:'Cinzel',serif;
@@ -101,8 +114,8 @@ body{
     content:'';
     position:absolute;inset:0;
     background:
-        linear-gradient(45deg, transparent 48%, rgba(78,120,181,.05) 50%, transparent 52%) 0 0 / 32px 32px,
-        linear-gradient(-45deg, transparent 48%, rgba(78,120,181,.05) 50%, transparent 52%) 0 0 / 32px 32px;
+        linear-gradient(45deg, transparent 48%, rgba(78,120,181,.09) 50%, transparent 52%) 0 0 / 32px 32px,
+        linear-gradient(-45deg, transparent 48%, rgba(78,120,181,.09) 50%, transparent 52%) 0 0 / 32px 32px;
     pointer-events:none;
 }
 .hero>*{position:relative}
