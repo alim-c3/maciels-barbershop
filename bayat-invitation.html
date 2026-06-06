@@ -15,16 +15,20 @@
     --blue-light: #ddeaf6;
     --blue-pale:  #eaf2fb;
     --blue-rule:  #9ab8d8;
-    --sage:       #7fa068;
-    --sage-deep:  #4f7040;
-    --sage-light: #e5eedc;
-    --sage-rule:  #a3be8e;
+    --sage:       #5e9452;
+    --sage-deep:  #3d6e36;
+    --sage-light: #e8f2df;
+    --sage-rule:  #8fb87a;
     --cream:      #faf8f4;
     --cream-warm: #f5f1ea;
     --text:       #1a1a1c;
     --text-mid:   #363638;
     --text-sub:   #68686e;
 }
+
+
+/* ─── TOP CAP ──────────────────────────────────────────── */
+.page-cap{height:4px;background:linear-gradient(to right,var(--blue-light),var(--blue),var(--sage),var(--blue),var(--blue-light))}
 
 /* ─── RESET ────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -61,6 +65,18 @@ body{
 .orn-lg::before,.orn-lg::after{width:110px}
 .gem{width:5px;height:5px;background:currentColor;transform:rotate(45deg);opacity:.6;flex-shrink:0}
 
+
+/* Islamic double-square star (two overlapping squares = 8-pt star) */
+.star-gem{
+    position:relative;width:10px;height:10px;
+    display:inline-block;flex-shrink:0;
+}
+.star-gem::before,.star-gem::after{
+    content:'';position:absolute;inset:0;
+    background:currentColor;opacity:.55;
+}
+.star-gem::after{transform:rotate(45deg)}
+
 /* ─── TAG ──────────────────────────────────────────────── */
 .tag{
     font-family:'Cinzel',serif;
@@ -78,8 +94,18 @@ body{
     text-align:center;
     padding:72px 32px 100px;
     position:relative;
+    overflow:hidden;
     border-bottom:1px solid var(--blue-rule);
 }
+.hero::before{
+    content:'';
+    position:absolute;inset:0;
+    background:
+        linear-gradient(45deg, transparent 48%, rgba(78,120,181,.05) 50%, transparent 52%) 0 0 / 32px 32px,
+        linear-gradient(-45deg, transparent 48%, rgba(78,120,181,.05) 50%, transparent 52%) 0 0 / 32px 32px;
+    pointer-events:none;
+}
+.hero>*{position:relative}
 
 .hero__eyebrow{
     color:var(--blue-deep);
@@ -438,6 +464,7 @@ body{
 <body>
 
 <!-- HERO -->
+<div class="page-cap"></div>
 <header class="hero">
     <span class="tag hero__eyebrow">You are warmly invited to celebrate the</span>
     <h1>
@@ -445,7 +472,7 @@ body{
         <span class="hero__title-ceremony">Ceremony</span>
     </h1>
     <div class="orn orn-md hero__orn" style="color:var(--blue)">
-        <span class="gem"></span><span class="gem"></span><span class="gem"></span>
+        <span class="gem"></span><span class="star-gem"></span><span class="gem"></span>
     </div>
     <p class="hero__honouring">honouring</p>
     <p class="hero__name">Ahsan Maherali</p>
@@ -513,7 +540,7 @@ body{
         <span class="bayat__open reveal d2" aria-hidden="true">&ldquo;</span>
         <p class="bayat__text reveal d3">Bayat is a ceremony in the Ismaili Muslim tradition in which a person takes an oath of allegiance to the Imam, formally entering the Jamat &mdash; a sacred and joyful milestone for the whole family.</p>
         <div class="orn orn-sm bayat__orn reveal d4" style="color:var(--sage)">
-            <span class="gem"></span>
+            <span class="star-gem"></span>
         </div>
     </div>
 </section>
@@ -550,7 +577,7 @@ body{
 <!-- FOOTER -->
 <footer class="footer">
     <div class="orn orn-lg footer__orn" style="color:var(--blue)">
-        <span class="gem"></span><span class="gem"></span><span class="gem"></span>
+        <span class="gem"></span><span class="star-gem"></span><span class="gem"></span>
     </div>
     <p class="footer__text">We look forward to celebrating this milestone with you.</p>
     <p class="footer__date">Bayat Ceremony &nbsp;&middot;&nbsp; July 4, 2026</p>
